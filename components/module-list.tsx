@@ -63,48 +63,49 @@ export function ModuleList() {
           <div className="col-span-1 text-[#00acee] font-bold text-base hidden sm:block">Stars</div>
         </div>
 
-        {modules.length === 0 ? <p className='p-4 text-center'> No results, please try different query</p>
-          : loading ? (
-            <p className="text-center p-4">Loading search results...</p>
-          ) : (
-            <>
-              <div className="divide-y divide-gray-200">
-                {modules.map((mod) => (
-                  <div
-                    key={mod.name}
-                    className="grid grid-cols-1 sm:grid-cols-4 p-4 hover:bg-gray-100"
-                  >
-                    <div className="col-span-2 space-y-4 flex flex-col">
-                      <span>{mod.name}</span>
+        {loading ? (
+          <p className="text-center p-4">Loading search results...</p>
+        ) : modules.length === 0 ? (
+          <p className='p-4 text-center'> No results, please try different query</p>
+        ) : (
+          <>
+            <div className="divide-y divide-gray-200">
+              {modules.map((mod) => (
+                <div
+                  key={mod.name}
+                  className="grid grid-cols-1 sm:grid-cols-4 p-4 hover:bg-gray-100"
+                >
+                  <div className="col-span-2 space-y-4 flex flex-col">
+                    <span>{mod.name}</span>
 
-                      <p className="flex gap-2 sm:hidden">
-                        <span className="bg-[#cecece] text-[#543729] text-xs">Owner: <span>mzabriskie</span></span>
-                        <span className="bg-[#cecece] text-[#543729] text-xs">Stars: <span>105299</span></span>
-                      </p>
-                    </div>
-                    <div className="col-span-1 hidden sm:block">{mod.owner}</div>
-                    <div className="col-span-1 hidden sm:block">{mod.stars}</div>
+                    <p className="flex gap-2 sm:hidden">
+                      <span className="bg-[#cecece] text-[#543729] text-xs">Owner: <span>mzabriskie</span></span>
+                      <span className="bg-[#cecece] text-[#543729] text-xs">Stars: <span>105299</span></span>
+                    </p>
                   </div>
-                ))}
-              </div>
+                  <div className="col-span-1 hidden sm:block">{mod.owner}</div>
+                  <div className="col-span-1 hidden sm:block">{mod.stars}</div>
+                </div>
+              ))}
+            </div>
 
-              <div className="flex gap-4 mt-4 p-4">
-                <button
-                  onClick={() => setPage(page - 1)}
-                  disabled={page === 1}
-                  className={`${page === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            <div className="flex gap-4 mt-4 p-4">
+              <button
+                onClick={() => setPage(page - 1)}
+                disabled={page === 1}
+                className={`${page === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
 
-                >
-                  Previous
-                </button>
-                <button
-                  onClick={() => setPage(page + 1)}
-                >
-                  Next
-                </button>
-              </div>
-            </>
-          )}
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => setPage(page + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
